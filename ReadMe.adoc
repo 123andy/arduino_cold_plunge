@@ -35,6 +35,13 @@ Upload the code contained in this sketch on to your board
   └── ReadMe.adoc         => this file
 ....
 
+=== Libraries
+
+I eleceted to try the SchedTask library here: https://github.com/Nospampls/SchedTask due
+to the fact it has some nice youTube videos describing the library with code examples
+and seemed pretty well thought out.
+
+
 === License
 This project is released under a {License} License.
 
@@ -42,10 +49,22 @@ This project is released under a {License} License.
 To contribute to this project please contact: 
 
 === BOM
+
+
+
+
+
+
 Add the bill of the materials you need for this project.
 
 |===
 | ID | Part name      | Part number | Quantity
+| 1 | Keyestudio.com 4-Channel Relay Module Shield | ks0251 | 1
+| 2 | HiLetgo ZMCT103C 5A AC Current Sensor | X004034T6P | 1
+| 3 | Passive Buzzer Module | https://www.amazon.com/dp/B0BSGW6CXM | 1
+
+
+
 | R1 | 10k Resistor   | 1234-abcd   | 10       
 | L1 | Red LED        | 2345-asdf   | 5        
 | A1 | Arduino Zero   | ABX00066    | 1        

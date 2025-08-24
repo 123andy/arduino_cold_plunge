@@ -16,7 +16,13 @@
   These functions are generated with the Thing and added at the end of this sketch.
 */
 
+#include "ColdPlungeConstants.h"          // A place to store constants for this project
 #include "thingProperties.h"
+#include <SchedTaskT.h>
+
+
+
+
 
 const int RELAY_BASE = 4;      // The first relay is connected to digital pin 4
 const int RELAY_NUM = 4;       // Total number of relays
