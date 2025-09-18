@@ -3,11 +3,24 @@
 #include <Arduino_NetworkConfigurator.h>
 #include "configuratorAgents/agents/BLEAgent.h"
 #include "configuratorAgents/agents/SerialAgent.h"
-void onFlowStateChange();
+void onTempSetpointChange();
+void onChillerOnChange();
+void onFlowFailDetectedChange();
+void onOzoneEligibleChange();
+void onOzoneOnChange();
+void onPumpOnChange();
 
-float flowRate;
-int flowState;
-CloudTime cloud_time_read;
+String next_cycle;
+String next_ozone;
+float chiller_current;
+float flow_rate;
+float temp_current;
+int temp_setpoint;
+bool chiller_on;
+bool flow_fail_detected;
+bool ozone_eligible;
+bool ozone_on;
+bool pump_on;
 
 KVStore kvStore;
 BLEAgentClass BLEAgent;
@@ -23,8 +36,16 @@ void initProperties(){
   //NetworkConfigurator.setReconfigurePin(your_pin);
   ArduinoCloud.setConfigurator(NetworkConfigurator);
 
-  ArduinoCloud.addProperty(flowRate, READ, ON_CHANGE, NULL);
-  ArduinoCloud.addProperty(flowState, READWRITE, ON_CHANGE, onFlowStateChange);
-  ArduinoCloud.addProperty(cloud_time_read, READ, 60 * SECONDS, NULL);
+  ArduinoCloud.addProperty(next_cycle, READ, 10 * SECONDS, NULL);
+  ArduinoCloud.addProperty(next_ozone, READ, 10 * SECONDS, NULL);
+  ArduinoCloud.addProperty(chiller_current, READ, ON_CHANGE, NULL);
+  ArduinoCloud.addProperty(flow_rate, READ, ON_CHANGE, NULL);
+  ArduinoCloud.addProperty(temp_current, READ, ON_CHANGE, NULL);
+  ArduinoCloud.addProperty(temp_setpoint, READWRITE, ON_CHANGE, onTempSetpointChange);
+  ArduinoCloud.addProperty(chiller_on, READWRITE, ON_CHANGE, onChillerOnChange);
+  ArduinoCloud.addProperty(flow_fail_detected, READWRITE, ON_CHANGE, onFlowFailDetectedChange);
+  ArduinoCloud.addProperty(ozone_eligible, READWRITE, ON_CHANGE, onOzoneEligibleChange);
+  ArduinoCloud.addProperty(ozone_on, READWRITE, ON_CHANGE, onOzoneOnChange);
+  ArduinoCloud.addProperty(pump_on, READWRITE, ON_CHANGE, onPumpOnChange);
 
 }
